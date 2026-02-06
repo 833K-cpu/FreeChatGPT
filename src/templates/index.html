@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>FreeChatGPT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="new-chat" onclick="newChat()"><i class="fas fa-plus"></i> New chat</button>
+        </div>
+        <div class="sidebar-list" id="convList"></div>
+        <div class="sidebar-footer">
+            <div class="user"><div class="avatar"><i class="fas fa-user"></i></div><div class="info"><div class="name">833K-cpu</div><div class="status"><span class="dot" id="dot"></span><span id="status">...</span></div></div></div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="topbar">
+            <button class="toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <select id="model" onchange="changeModel()"><option value="llama3.2:3b">ChatGPT 3.5</option></select>
+        </div>
+        <div class="chat" id="chat">
+            <div class="welcome" id="welcome"><h1>FreeChatGPT</h1><p>How can I help you today?</p></div>
+            <div class="messages" id="msgs"></div>
+        </div>
+        <div class="input-area">
+            <div class="input-box">
+                <button class="attach" onclick="document.getElementById('file').click()"><i class="fas fa-paperclip"></i></button>
+                <input type="file" id="file" style="display:none" onchange="handleFile(event)" multiple>
+                <div id="files"></div>
+                <textarea id="input" placeholder="Message FreeChatGPT..." rows="1" onkeydown="handleKey(event)"></textarea>
+                <button class="voice" id="voice" onmousedown="startVoice()" onmouseup="stopVoice()"><i class="fas fa-microphone"></i></button>
+                <button class="send" id="send" onclick="send()" disabled><i class="fas fa-arrow-up"></i></button>
+            </div>
+            <div class="footer">FreeChatGPT can make mistakes. Check important info.</div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
